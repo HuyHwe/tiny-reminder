@@ -7,18 +7,38 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        List<User> userList = (List<User>) userRepository.findAll();
-        return userList;
+    public ArrayList<User> getAllUsers() {
+        return (ArrayList<User>) userRepository.findAll();
+    }
+
+    public User getUserById(UUID id) {
+        Optional<User> userFound = userRepository.findById(id);
+        return userFound.orElse(null);
     }
 
     public void createNewUser(User newUser) {
-        userRepository.save(newUser);
+        if (newUser != null) {
+            userRepository.save(newUser);
+        }
+    }
+
+    public Boolean deleteUserById(UUID id) {
+       Optional<User> userToDelete = userRepository.findById(id);
+       if (userToDelete.isPresent()) {
+           userRepository.delete(userToDelete.get());
+           System.out.println("User with id: " + id + " deleted");
+           return true;
+       } else {
+           return false;
+       }
+
     }
 }
