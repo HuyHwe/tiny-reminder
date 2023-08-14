@@ -11,7 +11,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     UUID id;
 
+    String name;
     String email;
+
 
 //    Long type;
     public UUID getId() {
@@ -25,6 +27,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 //    public Long getType() {
 //        return type;

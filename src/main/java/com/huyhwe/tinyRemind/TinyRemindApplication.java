@@ -17,10 +17,9 @@ public class TinyRemindApplication {
 		SpringApplication.run(TinyRemindApplication.class, args);
 	}
 
-	@Scheduled(fixedRate = 2000L)
+	@Scheduled(cron = "0 0 8 * * *")
 	public void sendRemind() {
 		mailSenderService.sendEmail("huydarthvader@gmail.com", "hello", "holle");
-
 		System.out.println("mail sent ok");
 	}
 
