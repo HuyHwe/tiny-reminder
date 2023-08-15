@@ -24,13 +24,18 @@ public class TinyRemindApplication {
 		SpringApplication.run(TinyRemindApplication.class, args);
 	}
 
-//	@Scheduled(cron = "*/3 * * * * *")
-//	public void sendRemind() {
-//		ArrayList<User> userSubList = userService.getAllUsers();
-//		userSubList.forEach(user -> {
-//			mailSenderService.sendEmail(user.getEmail(), "hello", "okokok");
-//		});
-//
-//	}
+	@Scheduled(cron = "*/3 * * * * *")
+	public void sendRemind() {
+		new Thread(new Runnable() {
+			@Override public void run() {
+				ArrayList<User> userSubList = userService.getAllUsers();
+				userSubList.forEach(user -> {
+					if(user.getVerified()) {
+						mailSenderService.sendHTMLMail(user.getEmail());
+					}
+				});
+			}
+		}).start();
+	}
 
 }
