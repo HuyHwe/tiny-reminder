@@ -19,6 +19,16 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/allMail")
+    public ArrayList<String> getAllUserMails() {
+        ArrayList<User> userList = userService.getAllUsers();
+        ArrayList<String> mailList = new ArrayList<>();
+        userList.forEach(user -> {
+            mailList.add(user.getEmail());
+        });
+        return mailList;
+    }
+
 //    @PostMapping("/new")
 //    public void subscribeUser(@ModelAttribute User newUser){
 //        userService.createNewUser(newUser);

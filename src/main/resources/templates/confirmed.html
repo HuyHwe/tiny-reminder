@@ -9,7 +9,7 @@
     <meta name="description" content="">
 
 
-    <title>Tiny reminder</title>
+    <title>Success - Tiny reminder</title>
     <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap-grid.min.css}">
     <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap-reboot.min.css}">
@@ -37,8 +37,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 mx-auto mbr-form">
-                <form action="#" th:action="@{/success}" th:object="${userForm}" th:method="post" class="mbr-form form-with-styler">
-                    <input type="hidden" name="sth" data-form-email="true" value="FckAOcPYWx0ZnAxGm5SS3w25nBmp+3J8XwPWqIuZnLTLcziB7sifkKkr+3UHiZKKM6HPNITw52/TbfSHyzIsWC0ERzLtirE/4UBw7+c3ztBW1amw8dT9Z+HbnPoowGHm">
                     <div class="row">
                         <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out the form!</div>
                         <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
@@ -48,20 +46,13 @@
                     <div class="dragArea row">
                         <div class="col-12">
                             <h1 class="mbr-section-title mb-4 mbr-fonts-style align-center display-2">
-                                <strong>Drink water please!</strong></h1>
+                                <strong>Thanks <span th:text="${name}"></span> for subscribing to us!</strong></h1>
                         </div>
                         <div class="col-12">
-                            <p class="mbr-text mbr-fonts-style mb-5 align-center display-7">Remember to drink water everyday &lt;3<br>If you want a daily reminder, feel free to subscribe with your email <br>in the form below!</p>
+                            <p class="mbr-text mbr-fonts-style mb-5 align-center display-7">Your email has been confirmed</p>
+                            <p class="mbr-text mbr-fonts-style mb-5 align-center display-7">Remember to drink water everyday &lt;3</p>
                         </div>
-                        <div class="col-md col-12 form-group mb-3" data-for="name">
-                            <input type="text" name="name" th:field="*{name}" placeholder="Name" data-form-field="Name" class="form-control" id="name-form1-0">
-                        </div>
-                        <div class="col-md col-12 form-group mb-3" data-for="email">
-                            <input type="email" name="email" th:field="*{email}" placeholder="Email" data-form-field="Email" class="form-control" id="email-form1-0">
-                        </div>
-                        <div class="mbr-section-btn col-12 col-md-auto"><button type="submit" class="btn btn-primary display-4">Subscribe</button></div>
                     </div>
-                </form>
             </div>
         </div>
     </div>

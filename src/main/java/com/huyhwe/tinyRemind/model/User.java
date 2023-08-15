@@ -16,6 +16,8 @@ public class User {
     String email;
     Date creationDate = new Date();
 
+    Boolean verified = false;
+
 
 
     //    Long type;
@@ -44,6 +46,13 @@ public class User {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+    public Boolean getVerified() {
+        return verified;
+    }
+
+    public void setVerified(Boolean verified) {
+        this.verified = verified;
     }
 //    public Long getType() {
 //        return type;
