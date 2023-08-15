@@ -2,6 +2,7 @@ package com.huyhwe.tinyRemind.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -13,9 +14,11 @@ public class User {
 
     String name;
     String email;
+    Date creationDate = new Date();
 
 
-//    Long type;
+
+    //    Long type;
     public UUID getId() {
         return id;
     }
@@ -34,6 +37,13 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 //    public Long getType() {
 //        return type;

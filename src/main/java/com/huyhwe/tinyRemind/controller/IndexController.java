@@ -2,13 +2,13 @@ package com.huyhwe.tinyRemind.controller;
 
 import com.huyhwe.tinyRemind.model.User;
 import com.huyhwe.tinyRemind.service.UserService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Controller
 public class IndexController {
@@ -20,12 +20,19 @@ public class IndexController {
         model.addAttribute("userForm",new User());
         return "index";
     }
-    @PostMapping("/")
-    public String subscribeUser(@ModelAttribute User newUser, Model model){
+    @PostMapping("/success")
+    public String subscribeUser(@ModelAttribute User newUser){
         userService.createNewUser(newUser);
         System.out.println("user created");
-        model.addAttribute("userForm",new User());
-        return "index";
-//        return "User subscribed!";
+        return "success";
+    }
+
+    @GetMapping("/unsubscribe/{id}")
+    public String unsubscribeUser (@PathVariable UUID id) {
+        if (userService.deleteUserById(id)) {
+            return "unsubscribed";
+        } else {
+            return "error";
+        }
     }
 }
