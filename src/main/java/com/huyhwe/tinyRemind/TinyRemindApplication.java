@@ -3,6 +3,7 @@ package com.huyhwe.tinyRemind;
 import com.huyhwe.tinyRemind.model.User;
 import com.huyhwe.tinyRemind.service.MailSenderService;
 import com.huyhwe.tinyRemind.service.UserService;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,8 +32,13 @@ public class TinyRemindApplication {
 				ArrayList<User> userSubList = userService.getAllUsers();
 				userSubList.forEach(user -> {
 					if(user.getVerified()) {
-						mailSenderService.sendHTMLMail(user.getEmail());
-					}
+                        try {
+                            mailSenderService.sendEmail(user);
+                            System.out.println("email sent to: " + user.getName());
+                        } catch (MessagingException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
 				});
 			}
 		}).start();

@@ -31,7 +31,7 @@ public class IndexController {
             @Override public void run() {
                 userService.createNewUser(newUser);
                 System.out.println("user created");
-                mailSenderService.sendEmail(newUser.getEmail(), "Hydrated confirmation", "Hello " + newUser.getName()+ "! Please confirm your email address by clicking this link: " +" http://localhost:3008/confirm/" + newUser.getId() +  "\nStay hydrated!");
+                mailSenderService.sendRawEmail(newUser.getEmail(), "Hydrated confirmation", "Hello " + newUser.getName()+ "! Please confirm your email address by clicking this link: " +" http://localhost:3008/confirm/" + newUser.getId() +  "\nStay hydrated!");
             }
         }).start();
         model.addAttribute("name", newUser.getName());
