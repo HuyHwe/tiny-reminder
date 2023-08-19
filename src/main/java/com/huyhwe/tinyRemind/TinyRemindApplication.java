@@ -25,7 +25,7 @@ public class TinyRemindApplication {
 		SpringApplication.run(TinyRemindApplication.class, args);
 	}
 
-	@Scheduled(cron = "*/3 * * * * *")
+	@Scheduled(cron = "0 0 */8 * * *")
 	public void sendRemind() {
 		new Thread(new Runnable() {
 			@Override public void run() {
